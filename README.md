@@ -1,6 +1,6 @@
 # 52_card_sum_problem
 
-- The 'cardSum.dat', '*.mod', and '*.run' are run in AMPL.  Only the .run file needs to be run.
+- The 'cardSum.dat', '.mod', and '.run' are run in AMPL.  Only the .run file needs to be run.
   - These set of files find the combination of cards that add up to 52
   - Outputs the results as 'test.csv'
 - The Jupyter notebook (Untitled.ipynb) contains the actual analysis that computes:
