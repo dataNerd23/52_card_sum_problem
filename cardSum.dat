@@ -1,0 +1,18 @@
+data;
+
+set cardName := 01_ace 02_two 03_three 04_four 05_five 06_six 07_seven 08_eight 09_nine 10_ten 11_jack 12_queen 13_king;
+
+param:			cardValue	baseFive:=
+  01_ace		1			1
+  02_two    	2			5
+  03_three		3			25
+  04_four		4			125
+  05_five		5			625
+  06_six		6			3125
+  07_seven		7			15625
+  08_eight		8			78125
+  09_nine		9			390625
+  10_ten		10			1953125
+  11_jack		11			9765625
+  12_queen		12			48828125
+  13_king		13			244140625;

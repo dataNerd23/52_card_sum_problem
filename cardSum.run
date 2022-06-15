@@ -1,0 +1,40 @@
+model cardSum.mod;
+data cardSum.dat;
+
+display cardName;
+
+param cardNameStr symbolic;
+let cardNameStr := ("");
+
+for {i in cardName} {
+	let cardNameStr := (cardNameStr & i);
+	
+	if match(i,"13_king") == 0 then {
+		let cardNameStr := (cardNameStr & ",");
+	}
+}
+
+display cardNameStr;
+shell ("echo """ & cardNameStr & """ >> test.csv");
+
+option display_precision 0;
+option solver cplex;
+option cplex_options 'poolstub=allopt_cplex populate=2 populatelim=2100000000 poolintensity=4 poolagap=0.1';
+solve;
+
+for {n in 1..52_Card_Sum.npool} {
+	solution ("allopt_cplex" & n & ".sol");
+	#display _varname, _var;
+	#display sum {i in cardName} baseFive[i]*cardCount[i], sum {i in cardName} cardCount[i];
+	
+	let cardNameStr := ("");
+	for {i in cardName} {
+		let cardNameStr := (cardNameStr & cardCount[i]);
+		
+		if match(i,"13_king") == 0 then {
+			let cardNameStr := (cardNameStr & ",");
+		}
+	}
+	shell ("echo """ & cardNameStr & """ >> test.csv");
+	shell ("rm allopt_cplex" & n & ".sol");
+}
